@@ -37,6 +37,8 @@ async function loginAPI(formdata){
     console.log([...formdata])
     const result = await fetch(url, options);
     const data = result.json();
+
+    console.log(data)
     
     if (result.ok){
         return data
@@ -45,12 +47,50 @@ async function loginAPI(formdata){
     }
 }
 
-function logoutAPI(){
+async function logoutAPI(formdata){
     const url = "http://127.0.0.1:8000/account/logout/"
+    const options = {
+        method: "POST",
+        headers: {
+            // "Content-Type": "application/json",
+            // 서버에서 'multipart/form-data; boundary=----WebKitFormBoundaryaLTPqRZtFLTVfxL9' 로 확인됩니다.
+        },
+        body: formdata,
+        redirect:"follow",
+    }
+    console.log([...formdata])
+    const result = await fetch(url, options);
+    const data = result.json();
+
+    console.log(data)
+    
+    if (result.ok){
+        return data
+    } else{
+        return Error(data)
+    }
 }
 
-function signinAPI(){
+async function registerAPI(formdata){
     const url = "http://127.0.0.1:8000/account/create/"
+    const options = {
+        method: "POST",
+        headers: {
+            // "Content-Type": "application/json",
+            // 서버에서 'multipart/form-data; boundary=----WebKitFormBoundaryaLTPqRZtFLTVfxL9' 로 확인됩니다.
+        },
+        body: formdata,
+        redirect:"follow",
+    }
+    console.log([...formdata])
+    const result = await fetch(url, options);
+    const data = result.json();
+    
+    if (result.ok){
+        return data
+    } else{
+        return Error(data)
+    }
 }
 
 
@@ -58,5 +98,5 @@ export {
     testAPI,
     loginAPI,
     logoutAPI,
-    signinAPI
+    registerAPI
 }
