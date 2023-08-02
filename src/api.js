@@ -1,10 +1,11 @@
 async function testAPI(input){
-    const url = "http://127.0.0.1:8000/chatbot/test/"
+    const url = "http://127.0.0.1:8000/api/chatbot/test/"
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
             // "my-header": "headertest" // 서버에 해당 헤더 항목을 추가하면 읽어올 수 있습니다.
+            "Authorization" : "91fc224b804dcb7dcc919efb68db07b1fa419386"
         },
         body: JSON.stringify(input),
         redirect:"follow",
@@ -24,7 +25,7 @@ async function testAPI(input){
 
 
 async function loginAPI(formdata){
-    const url = "http://127.0.0.1:8000/account/login/"
+    const url = "http://127.0.0.1:8000/api/accounts/login/"
     const options = {
         method: "POST",
         headers: {
@@ -48,7 +49,7 @@ async function loginAPI(formdata){
 }
 
 async function logoutAPI(formdata){
-    const url = "http://127.0.0.1:8000/account/logout/"
+    const url = "http://127.0.0.1:8000/api/accounts/logout/"
     const options = {
         method: "POST",
         headers: {
@@ -63,6 +64,7 @@ async function logoutAPI(formdata){
     const data = result.json();
 
     console.log(data)
+    console.log(result)
     
     if (result.ok){
         return data
@@ -72,7 +74,7 @@ async function logoutAPI(formdata){
 }
 
 async function registerAPI(formdata){
-    const url = "http://127.0.0.1:8000/account/create/"
+    const url = "http://127.0.0.1:8000/api/accounts/registration/"
     const options = {
         method: "POST",
         headers: {

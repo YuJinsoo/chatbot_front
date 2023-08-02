@@ -1,6 +1,7 @@
-import {loginAPI, logoutAPI, registerAPI} from "./api.js"
+import {loginAPI, logoutAPI} from "./api.js"
 
 const $loginForm = document.querySelector('#loginForm')
+// let key
 
 $loginForm.addEventListener("submit", (e)=>{
     e.preventDefault();
@@ -18,6 +19,7 @@ $loginForm.addEventListener("submit", (e)=>{
     result.then((a) => {
         data = a;
         console.log(data);
+        // key = data;
     })
 });
 
@@ -27,6 +29,7 @@ $logoutForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     // let csrftoken = getCookie('csrftoken');
     const formdata = new FormData($logoutForm);
+    formdata.append('Authorization', 'Key 91fc224b804dcb7dcc919efb68db07b1fa419386');
     // console.log(formdata);
     // console.log([...formdata]);
     // const payload = new URLSearchParams(formdata);
@@ -43,24 +46,5 @@ $logoutForm.addEventListener("submit", (e)=>{
 });
 
 
-const $registerform = document.querySelector('#registerForm')
-
-$registerform.addEventListener("submit", (e)=>{
-    e.preventDefault();
-    const formdata = new FormData($registerform);
-    // console.log(formdata);
-    // console.log([...formdata]);
-    // const payload = new URLSearchParams(formdata);
-    // console.log(payload)
-    // console.log([...payload]);
-
-    let data;
-    let result = registerAPI(formdata);
-
-    result.then((a) => {
-        data = a;
-        console.log(data);
-    })
-});
 
 
