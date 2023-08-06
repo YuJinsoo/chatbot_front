@@ -29,7 +29,7 @@ $logoutForm.addEventListener("submit", (e)=>{
     e.preventDefault();
     // let csrftoken = getCookie('csrftoken');
     const formdata = new FormData($logoutForm);
-    formdata.append('Authorization', 'Key 91fc224b804dcb7dcc919efb68db07b1fa419386');
+    
     // console.log(formdata);
     // console.log([...formdata]);
     // const payload = new URLSearchParams(formdata);
