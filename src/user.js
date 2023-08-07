@@ -16,10 +16,11 @@ $loginForm.addEventListener("submit", (e)=>{
     let data;
     let result = loginAPI(formdata);
     // console.log(result) Promise
-    result.then((a) => {
-        data = a;
-        console.log(data);
-        // key = data;
+    result.then((res) => {
+        console.log(res);
+        console.log(res.Token);
+
+        localStorage.setItem('token', res.Token);
     })
 });
 

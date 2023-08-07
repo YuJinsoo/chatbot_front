@@ -34,13 +34,9 @@ async function loginAPI(formdata){
         body: formdata,
         redirect:"follow",
     }
-    console.log([...formdata])
+    // console.log([...formdata])
     const result = await fetch(url, options);
     const data = result.json();
-
-    console.log(data)
-    // console.log(data.Token)
-    localStorage.setItem('token', data.Token)
     
     if (result.ok){
         return data
@@ -50,6 +46,8 @@ async function loginAPI(formdata){
 }
 
 async function logoutAPI(formdata){
+    const key = localStorage.getItem('token')
+    print(key)
     const url = "http://127.0.0.1:8000/api/accounts/logout/"
     const options = {
         method: "POST",
