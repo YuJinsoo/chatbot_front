@@ -1,9 +1,11 @@
 async function testAPI(input){
+    const key = localStorage.getItem('token')
     const url = "http://127.0.0.1:8000/api/chatbot/test"
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
+            "Authentication": `Token ${key}`,
             // "my-header": "headertest" // 서버에 해당 헤더 항목을 추가하면 읽어올 수 있습니다.
         },
         body: JSON.stringify(input),
@@ -45,26 +47,20 @@ async function loginAPI(formdata){
     }
 }
 
-async function logoutAPI(formdata){
+async function logoutAPI(){
     const key = localStorage.getItem('token')
-    print(key)
     const url = "http://127.0.0.1:8000/api/accounts/logout/"
     const options = {
         method: "POST",
         headers: {
-            // "Content-Type": "application/json",
-            // 서버에서 'multipart/form-data; boundary=----WebKitFormBoundaryaLTPqRZtFLTVfxL9' 로 확인됩니다.
+            "Content-Type": "application/json",
+            "Authorization": `Token ${key}`,
         },
-        body: formdata,
         redirect:"follow",
     }
-    console.log([...formdata])
     const result = await fetch(url, options);
     const data = result.json();
 
-    console.log(data)
-    console.log(result)
-    
     if (result.ok){
         return data
     } else{

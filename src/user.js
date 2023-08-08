@@ -24,25 +24,19 @@ $loginForm.addEventListener("submit", (e)=>{
     })
 });
 
-const $logoutForm = document.querySelector('#logoutForm')
+// const $logoutForm = document.querySelector('#logoutForm')
+const $logoutBtn = document.querySelector('#logoutbtn');
 
-$logoutForm.addEventListener("submit", (e)=>{
+$logoutBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     // let csrftoken = getCookie('csrftoken');
-    const formdata = new FormData($logoutForm);
     
-    // console.log(formdata);
-    // console.log([...formdata]);
-    // const payload = new URLSearchParams(formdata);
-    // console.log(payload)
-    // console.log([...payload]);
-
-    let data;
-    let result = logoutAPI(formdata);
+    let result = logoutAPI();
     // console.log(result) Promise
-    result.then((a) => {
-        data = a;
-        console.log(data);
+    result.then((res) => {
+        console.log(res);
+        console.log('hhhh')
+        localStorage.removeItem('token');
     })
 });
 
