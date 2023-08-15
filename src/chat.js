@@ -1,4 +1,4 @@
-import { testAPI } from "./api.js";
+import { testAPI, chatAPI } from "./api.js";
 
 const $chatBtn = document.querySelector("#chatBtn")
 
@@ -16,8 +16,15 @@ let input = [
 
 $chatBtn.addEventListener("click", (e)=>{
     e.preventDefault();
+    const promptInput = document.querySelector('#promptInput');
+    console.log(promptInput.value);
+
     let data;
-    let result = testAPI(input);
+    let input = {
+        prompt: promptInput.value,
+      }
+
+    let result = chatAPI(input);
     // console.log(result) Promise
     result.then( (a) => {
         data = a;

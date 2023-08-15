@@ -1,16 +1,44 @@
 async function testAPI(input){
     const key = localStorage.getItem('token')
-    const url = "http://127.0.0.1:8000/api/chatbot/test"
+    const url = "http://127.0.0.1:8000/api/chatbot/test/"
     const options = {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authentication": `Token ${key}`,
+            "Authorization": `Token ${key}`,
             // "my-header": "headertest" // 서버에 해당 헤더 항목을 추가하면 읽어올 수 있습니다.
         },
         body: JSON.stringify(input),
         redirect:"follow",
     }
+
+    const result = await fetch(url, options);
+    const data = result.json();
+
+    // console.log(result); // Response
+    // console.log(data); // Promise
+    if (result.ok){
+        return data;
+    } else{
+        throw Error(data);
+    }
+}
+
+async function chatAPI(input){
+    const key = localStorage.getItem('token')
+    const url = "http://127.0.0.1:8000/api/chatbot/answer/"
+
+    const options = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${key}`,
+            // "my-header": "headertest" // 서버에 해당 헤더 항목을 추가하면 읽어올 수 있습니다.
+        },
+        body: JSON.stringify(input),
+        redirect:"follow",
+    }
+    console.log(JSON.stringify(input))
 
     const result = await fetch(url, options);
     const data = result.json();
@@ -95,5 +123,6 @@ export {
     testAPI,
     loginAPI,
     logoutAPI,
-    registerAPI
+    registerAPI,
+    chatAPI
 }
