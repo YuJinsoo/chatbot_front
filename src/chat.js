@@ -17,18 +17,28 @@ let input = [
 $chatBtn.addEventListener("click", (e)=>{
     e.preventDefault();
     const promptInput = document.querySelector('#promptInput');
-    console.log(promptInput.value);
+    // console.log(promptInput.value);
 
     let data;
     let input = {
-        prompt: promptInput.value,
+        "prompt": `${promptInput.value}`
       }
+
+    const cl = document.querySelector("#chatlist");
+    let p = document.createElement("li");
+    p.innerText = `Me : ${promptInput.value}`;
+    cl.append(p);
 
     let result = chatAPI(input);
     // console.log(result) Promise
-    result.then( (a) => {
-        data = a;
-        console.log(data);
-    })
+    result.then((res) => {
+        console.log(res);
+        console.log(res.prompt);
+        console.log(res.response);
+        
+        let a = document.createElement("li");
+        a.innerText = `AI : ${res.response}`;
+        cl.append(a);
 
+    })
 });

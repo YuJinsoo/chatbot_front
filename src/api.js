@@ -35,6 +35,9 @@ async function chatAPI(input){
             "Authorization": `Token ${key}`,
             // "my-header": "headertest" // 서버에 해당 헤더 항목을 추가하면 읽어올 수 있습니다.
         },
+        // body: JSON.stringify({
+            // prompt: "world",
+        // }),
         body: JSON.stringify(input),
         redirect:"follow",
     }
@@ -44,11 +47,11 @@ async function chatAPI(input){
     const data = result.json();
 
     // console.log(result); // Response
-    // console.log(data); // Promise
+    console.log(data); // Promise
     if (result.ok){
         return data;
     } else{
-        throw Error(data);
+        return Error(data);
     }
 }
 
